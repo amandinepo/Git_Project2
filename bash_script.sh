@@ -11,4 +11,6 @@ source venv/bin/activate
 
 pip install Flask
 
+git clone https://github.com/amandinepo/Git_Project2.git
+cd Git_Project2
 
