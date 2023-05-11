@@ -15,5 +15,9 @@ git clone https://github.com/amandinepo/Git_Project2.git
 cd Git_Project2
 pip install Flask
 
+sudo systemctl start apache2
+
 export FLASK_APP=hello.py
 flask run --host=0.0.0.0
+
+
