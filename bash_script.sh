@@ -14,3 +14,6 @@ pip install Flask
 git clone https://github.com/amandinepo/Git_Project2.git
 cd Git_Project2
 pip install Flask
+
+export FLASK_APP=hello.py
+flask run
