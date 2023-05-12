@@ -4,6 +4,11 @@ import pandas as pd
 
 app = Dash(__name__)
 
+CourseQuestions = ["Which git command creates a Git repository inside your directory ?", 
+                   "Name the three operating systems", 
+                   "In git file system, a directory is called a...?",
+                   ]
+
 app.layout = html.Div([
     html.Div(dcc.Input(id='input-on-submit', type='text')),
     html.Button('Submit', id='submit-val', n_clicks=0),
