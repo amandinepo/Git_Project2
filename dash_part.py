@@ -8,8 +8,6 @@ app = Dash(__name__,external_stylesheets=external_stylesheets)
 
 server = app.server
 
-app = Dash(__name__)
-
 CourseQuestions = ["Which git command creates a Git repository inside your directory ?", 
                    "Which bash command downloads a file from an URL ?", 
                    "In git file system, a directory is called a...?",
