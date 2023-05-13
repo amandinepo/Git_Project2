@@ -28,7 +28,14 @@ CourseAnswers = ["git init",
                  "pwd",
                  "substitute user do"]
 
+i= random.randint(0,9)
+
+app.layout = html.Div(children=[
+    html.H1(children='Hello Dash'),
+])
+
 app.layout = html.Div([
+    html.Div(html.H1(children=CourseQuestions[i])),
     html.Div(dcc.Input(id='input-on-submit', type='text')),
     html.Button('Submit', id='submit-val', n_clicks=0),
     html.Button('Another question', id='change-question', n_clicks=0),
@@ -42,10 +49,10 @@ app.layout = html.Div([
     Input('submit-val', 'n_clicks'),
     State('input-on-submit', 'value')
 )
-def update_output(value):
-    return 'The input value was "{}" and the button has been clicked times'.format(
-        value
-       
-)
+def update_output(n_clicks, value):
+    return 'The answer was "{}" and the button has been clicked {} times'.format(
+        value,
+        n_clicks
+    )
 
 app.run_server(debug=True)
