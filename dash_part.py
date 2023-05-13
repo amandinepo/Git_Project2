@@ -1,6 +1,5 @@
 from dash import dcc,Dash, html, Input, Output,State
 import plotly.express as px
-import pandas as pd
 import random
 
 app = Dash(__name__)
