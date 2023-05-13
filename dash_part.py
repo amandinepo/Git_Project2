@@ -32,16 +32,15 @@ i= random.randint(0,9)
 
 app.layout = html.Div([
     html.Div(html.H1(children="Welcome to the Git,Python,Linux quiz")),
-    html.Div(html.H2(id="Question-zone",children=CourseQuestions[i])),
+    html.Div(html.H2(id="Question_zone",children=CourseQuestions[i])),
     html.Div(dcc.Input(id='input-on-submit', type='text')),
     html.Button('Submit', id='submit-val', n_clicks=0),
     html.Button('Another question', id='change-question'),
     html.Div(id='container-button-basic',
              children='Enter a value and press submit'),
     html.Div(id='container-button-basic2',
-             children='Enter a value and press submit')
+             children='Enter an answer and press submit')
 ])
-
 
 @app.callback(
     Output('container-button-basic', 'children'),
@@ -63,10 +62,11 @@ def update_output(n_clicks, value):
 @app.callback(
     Output('container-button-basic2', 'children'),
     Input('change-question', 'n_clicks'),
-    #State('input-on-submit', 'value')
+    State('input-on-submit', 'submit-val')
 )
-def update_output2(n_clicks):
+def update_question(clicks, Question_zone):
     i= random.randint(0,9)
-    html.H1(id="Question-zone",children=CourseQuestions[i])
+    return [html.H2(CourseQuestions[i])]
 
-app.run_server(debug=True)
+if __name__ == '__main__':
+    app.run_server(debug=True)
