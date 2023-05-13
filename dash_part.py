@@ -30,15 +30,12 @@ CourseAnswers = ["git init",
 
 i= random.randint(0,9)
 
-app.layout = html.Div(children=[
-    html.H1(children='Hello Dash'),
-])
-
 app.layout = html.Div([
-    html.Div(html.H1(children=CourseQuestions[i])),
+    html.Div(html.H1(children="Welcome to the Git,Python,Linux quiz")),
+    html.Div(html.H2(children=CourseQuestions[i])),
     html.Div(dcc.Input(id='input-on-submit', type='text')),
     html.Button('Submit', id='submit-val', n_clicks=0),
-    html.Button('Another question', id='change-question', n_clicks=0),
+    html.Button('Another question', id='change-question'),
     html.Div(id='container-button-basic',
              children='Enter a value and press submit')
 ])
@@ -50,9 +47,15 @@ app.layout = html.Div([
     State('input-on-submit', 'value')
 )
 def update_output(n_clicks, value):
-    return 'The answer was "{}" and the button has been clicked {} times'.format(
-        value,
-        n_clicks
-    )
+    GoodAnswer = "Bonne réponse !"
+    BadAnswer = "Dommage...La réponse était {}".format(CourseAnswers[i])
+    Answer = "Entrez votre réponse"
+    
+    if(value != None):
+        if(value == CourseAnswers[i]):
+            Answer = GoodAnswer
+        else:
+            Answer = BadAnswer
+    return Answer
 
 app.run_server(debug=True)
