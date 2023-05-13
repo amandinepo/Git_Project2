@@ -3,7 +3,10 @@ import plotly.express as px
 import random
 import os
 
-app = Dash(__name__)
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+app = Dash(__name__,external_stylesheets=external_stylesheets)
+
+server = app.server
 
 CourseQuestions = ["Which git command creates a Git repository inside your directory ?", 
                    "Which bash command downloads a file from an URL ?", 
