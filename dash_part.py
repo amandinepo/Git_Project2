@@ -1,6 +1,7 @@
 from dash import dcc,Dash, html, Input, Output,State
 import plotly.express as px
 import random
+import os
 
 app = Dash(__name__)
 
@@ -68,4 +69,4 @@ def update_question(clicks, Question_zone):
     return [html.H2(CourseQuestions[i])]
 
 if __name__ == '__main__':
-    app.run_server(debug=True, port=2206)
+    app.run_server(debug=True)
