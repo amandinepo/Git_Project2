@@ -72,4 +72,4 @@ def update_question(clicks, Question_zone):
     return [html.H2(CourseQuestions[i])]
 
 if __name__ == '__main__':
-    app.run_server()
+    app.run_server(Debug=True)
