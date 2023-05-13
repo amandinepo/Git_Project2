@@ -1,12 +1,14 @@
 from dash import dcc,Dash, html, Input, Output,State
 import plotly.express as px
+import pandas as pd
 import random
-import os
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = Dash(__name__,external_stylesheets=external_stylesheets)
 
 server = app.server
+
+app = Dash(__name__)
 
 CourseQuestions = ["Which git command creates a Git repository inside your directory ?", 
                    "Which bash command downloads a file from an URL ?", 
@@ -17,7 +19,18 @@ CourseQuestions = ["Which git command creates a Git repository inside your direc
                    "Which letter is used after a bash command is used to display ALL of the elements in a folder ?",
                    "Which git is command change files to another point in Git history ?",
                    "Which bash command prints working directory ?",
-                   "What does sudo means ?"
+                   "What does sudo means ?",
+                   "Which git command adds changes to local Git history ?",
+                   "Which git command registers some changes for next commit ?",
+                   "Which git command copies a distant repository ?",
+                   "Which git command downloads Git objects from distant repository ?",
+                   "Which git command fetches AND mergees from distant repository ?",
+                   "Which git command sends Git objects to a distant repository ?",
+                   "Which bash command allows to display the path for the command executable ?",
+                   "What does apt means ?",
+                   "Which symbol Pass a command output as input for the next one ?",
+                   "What does bash means ?",
+                   "What does sh means ?",
                    ]
 
 CourseAnswers = ["git init",
@@ -29,13 +42,24 @@ CourseAnswers = ["git init",
                  "a",
                  "git checkout",
                  "pwd",
-                 "substitute user do"]
+                 "substitute user do",
+                 "git commit",
+                 "git add",
+                 "git clone",
+                 "git fetch",
+                 "git pull",
+                 "git push",
+                 "which",
+                 "|",
+                 "Bourne-Again shell",
+                 "Bourne shell"
+                 ]
 
-i= random.randint(0,9)
+i= random.randint(0,19)
 
 app.layout = html.Div([
     html.Div(html.H1(children="Welcome to the Git,Python,Linux quiz")),
-    html.Div(html.H2(id="Question_zone",children=CourseQuestions[i])),
+    html.Div(html.H2(id="Question_zone", children=CourseQuestions[i])),
     html.Div(dcc.Input(id='input-on-submit', type='text')),
     html.Button('Submit', id='submit-val', n_clicks=0),
     html.Button('Another question', id='change-question'),
@@ -44,6 +68,13 @@ app.layout = html.Div([
     html.Div(id='container-button-basic2',
              children='Enter an answer and press submit')
 ])
+
+@app.callback(Output('titre', 'children'), [Input('change-question', 'n_clicks')])
+def modifier_titre(n):
+    if n is None:
+        return 'Titre initial'
+    else:
+        return 'Nouveau titre'
 
 @app.callback(
     Output('container-button-basic', 'children'),
@@ -60,16 +91,8 @@ def update_output(n_clicks, value):
             Answer = GoodAnswer
         else:
             Answer = BadAnswer
-    return Answer
-
-@app.callback(
-    Output('container-button-basic2', 'children'),
-    Input('change-question', 'n_clicks'),
-    State('input-on-submit', 'submit-val')
-)
-def update_question(clicks, Question_zone):
-    i= random.randint(0,9)
-    return [html.H2(CourseQuestions[i])]
+    
+    return Answer + " " + str(n_clicks)
 
 if __name__ == '__main__':
     app.run_server(debug=True,host='0.0.0.0',port='8050')
