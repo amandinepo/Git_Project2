@@ -7,5 +7,6 @@ sudo apt-get install apache2
 
 python3 -m venv .venvs/dash
 source .venvs/dash/bin/activate
+sudo systemctl start apache2
 
 
