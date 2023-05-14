@@ -62,17 +62,16 @@ app.layout = html.Div([
     html.Button('Submit', id='submit-val', n_clicks=0),
     html.Button('Another question', id='change-question'),
     html.Div(id='container-button-basic',
-             children='Enter a value and press submit'),
+             children=''),
     html.Div(id='container-button-basic2',
              children='Enter an answer and press submit')
 ])
 
-@app.callback(Output('titre', 'children'), [Input('change-question', 'n_clicks')])
-def modifier_titre(n):
-    if n is None:
-        return 'Titre initial'
-    else:
-        return 'Nouveau titre'
+@app.callback(Output('Question_zone'), [Input('change-question', 'n_clicks')], [State('input-on-submit', 'value')])
+def refresh_page(n_clicks):
+    if n_clicks is not None and n_clicks > 0:
+        return 0
+    return None
 
 @app.callback(
     Output('container-button-basic', 'children'),
@@ -93,4 +92,4 @@ def update_output(n_clicks, value):
     return Answer + " " + str(n_clicks)
 
 if __name__ == '__main__':
-    app.run_server(debug=True,host='0.0.0.0',port='8050')
+    app.run_server(debug=True,port='8050')
