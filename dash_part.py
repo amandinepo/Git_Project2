@@ -67,11 +67,12 @@ app.layout = html.Div([
              children='Enter an answer and press submit')
 ])
 
-@app.callback(Output('Question_zone'), [Input('change-question', 'n_clicks')], [State('input-on-submit', 'value')])
-def refresh_page(n_clicks):
+@app.callback(Output('Question_zone', 'children'), [Input('change-question', 'n_clicks')], [State('input-on-submit', 'value')])
+def refresh_page(n_clicks, i):
     if n_clicks is not None and n_clicks > 0:
-        return 0
-    return None
+        n_clicks = 0
+    i = random.randint(0,19)
+    return [html.H2(children=CourseQuestions[i])]
 
 @app.callback(
     Output('container-button-basic', 'children'),
