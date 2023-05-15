@@ -72,14 +72,15 @@ def refresh_page(n_clicks, i):
     if n_clicks is not None and n_clicks > 0:
         n_clicks = 0
     i = random.randint(0,19)
-    return [html.H2(children=CourseQuestions[i])]
+    return [html.H2(children=CourseQuestions[i] + " "+ str(i))]
 
 @app.callback(
     Output('container-button-basic', 'children'),
     Input('submit-val', 'n_clicks'),
     State('input-on-submit', 'value')
 )
-def update_output(n_clicks, value):
+def update_output(i, value):
+    html.H2.children
     GoodAnswer = "Bonne réponse !"
     BadAnswer = "Dommage...La réponse était {}".format(CourseAnswers[i])
     Answer = "Entrez votre réponse"
@@ -90,7 +91,7 @@ def update_output(n_clicks, value):
         else:
             Answer = BadAnswer
     
-    return Answer + " " + str(n_clicks)
+    return Answer + " " + html.H2.children
 
 if __name__ == '__main__':
     app.run_server(debug=True,port='8050')
