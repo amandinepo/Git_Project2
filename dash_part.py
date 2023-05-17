@@ -91,7 +91,7 @@ def update_output(value, n_clicks):
         else:
             Answer = BadAnswer
     
-    return Answer + " " + str(i)
+    return Answer
 
 if __name__ == '__main__':
     app.run_server(host='0.0.0.0', port='8050')
