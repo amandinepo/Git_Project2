@@ -94,4 +94,4 @@ def update_output(value, n_clicks):
     return Answer + " " + str(i)
 
 if __name__ == '__main__':
-    app.run_server(host='68.219.114.168', port='8050')
+    app.run_server(host='0.0.0.0', port='8050')
