@@ -9,6 +9,6 @@ pip install pandas
 
 python3 -m venv .venvs/dash
 source .venvs/dash/bin/activate
-sudo systemctl start apache2
+sudo ufw allow 8050
 python dash_part.py
 
