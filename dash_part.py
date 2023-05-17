@@ -94,4 +94,4 @@ def update_output(i, value):
     return Answer + " " + html.H2.children
 
 if __name__ == '__main__':
-    app.run_server(debug=True,port='8050')
+    app.run_server(host='68.219.114.168', port='8050')
