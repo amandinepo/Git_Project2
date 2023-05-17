@@ -12,4 +12,4 @@ def mountain(mt):
     return "This is " + str(mt)
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port='8050')
+    app.run(host='0.0.0.0', port='28596')
