@@ -62,25 +62,24 @@ app.layout = html.Div([
     html.Button('Submit', id='submit-val', n_clicks=0),
     html.Button('Another question', id='change-question'),
     html.Div(id='container-button-basic',
-             children=''),
+             children='Enter a answer'),
     html.Div(id='container-button-basic2',
              children='Enter an answer and press submit')
 ])
 
 @app.callback(Output('Question_zone', 'children'), [Input('change-question', 'n_clicks')], [State('input-on-submit', 'value')])
-def refresh_page(n_clicks, value):
+def refresh_page(n_clicks, clicks):
     if n_clicks is not None and n_clicks > 0:
         n_clicks = 0
     i = random.randint(0,19)
-    return i
+    return [html.H2(children=CourseQuestions[i])]
 
 @app.callback(
     Output('container-button-basic', 'children'),
     Input('submit-val', 'n_clicks'),
     State('input-on-submit', 'value')
 )
-def update_output(value, n_clicks):
-    i = refresh_page(n_clicks, value)
+def update_output(n_clicks, value):
     GoodAnswer = "Bonne réponse !"
     BadAnswer = "Dommage...La réponse était {}".format(CourseAnswers[i])
     Answer = "Entrez votre réponse"
@@ -90,8 +89,7 @@ def update_output(value, n_clicks):
             Answer = GoodAnswer
         else:
             Answer = BadAnswer
-    
     return Answer
 
 if __name__ == '__main__':
-    app.run_server(host='0.0.0.0', port='8050')
+    app.run_server(debug=True,port='8050')
